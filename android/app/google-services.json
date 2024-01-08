@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "810957053802",
+    "project_id": "fir-app-73ede",
+    "storage_bucket": "fir-app-73ede.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810957053802:android:52420fb6e56baae5044f13",
+        "android_client_info": {
+          "package_name": "com.example.instagram_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcDYfKMsd_bQ8k_85Ee8mSuLE5LfwhP_A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
