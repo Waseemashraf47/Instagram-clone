@@ -4,7 +4,7 @@ import 'package:instagram_clone/firebase_options.dart';
 // import 'package:instagram_clone/responisve/mobile_screen_layout.dart';
 // import 'package:instagram_clone/responisve/responsive_layout_screen.dart';
 // import 'package:instagram_clone/responisve/web_screen_layout.dart';
-import 'package:instagram_clone/screens/login_screen.dart';
+import 'package:instagram_clone/screens/signup.dart';
 import 'package:instagram_clone/utils/colors.dart';
 
 Future<void> main() async {
@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
     //       webScreenLayout: WebScreenLayout(),
     //       mobileScreenLayout: MobileScreenLayout()),
     // );
-    home: const LoginScreen(),
+    // home: const LoginScreen(),
+        home: const SignupScreen(),
     );
   }
 }
