@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/utils/colors.dart';
+import 'package:instagram_clone/utils/dimensions.dart';
 import 'package:instagram_clone/widgets/text_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -36,15 +37,13 @@ class _LoginScreenState extends State<LoginScreen> {
           //svg image
           SvgPicture.asset('assets/ic_instagram.svg',
               color: primaryColor, height: 64),
-          const SizedBox(height: 64),
+          verticalSpacing(18),
           //Text field for email
           TextFieldInput(
               textEditingController: _emailController,
               hintText: 'Enter your email...',
               textInputType: TextInputType.emailAddress),
-          const SizedBox(
-            height: 24,
-          ),
+          verticalSpacing(15),
           //Text field password
           TextFieldInput(
             textEditingController: _passwordController,
@@ -52,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
             textInputType: TextInputType.text,
             isPass: true,
           ),
-          const SizedBox(height: 24),
+          verticalSpacing(18),
           // Login Button
           InkWell(
             onTap: () {
@@ -73,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: const Text('Login'),
             ),
           ),
-          const SizedBox(height: 24,),
+          verticalSpacing(18),
           Flexible(flex: 2, child: Container(), ),
           // Transioning for login page to next screen
           Row(

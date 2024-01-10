@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/resources/auth_methods.dart';
 import 'package:instagram_clone/utils/colors.dart';
+import 'package:instagram_clone/utils/dimensions.dart';
+import 'package:instagram_clone/utils/utils.dart';
 import 'package:instagram_clone/widgets/text_field_input.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -26,6 +30,14 @@ class _SignupScreenState extends State<SignupScreen> {
     _usernameController.dispose();
   }
 
+  Future<void> selectImage() async {
+    Uint8List im = await pickImage(ImageSource.gallery);
+    setState(() {
+      
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,39 +53,39 @@ class _SignupScreenState extends State<SignupScreen> {
           //svg image
           SvgPicture.asset('assets/ic_instagram.svg',
               color: primaryColor, height: 64),
-          const SizedBox(height: 64),
+          verticalSpacing(12),
           //A circular widget to accept and show file/picture
-          Stack(
-            children: [
-              const CircleAvatar(
-                radius: 64,
-                backgroundImage: NetworkImage(
-                    'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
-              ),
-              Positioned(
-                  bottom: -10,
-                  left: 80,
-                  child: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.add_a_photo)))
-            ],
+          SingleChildScrollView(
+            child: Stack(
+              children: [
+                const CircleAvatar(
+                  radius: 64,
+                  backgroundImage: NetworkImage(
+                      'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+                ),
+                Positioned(
+                    bottom: -10,
+                    left: 80,
+                    child: IconButton(
+                        onPressed: selectImage, 
+                        icon: const Icon(Icons.add_a_photo)))
+              ],
+            ),
           ),
-          const SizedBox(height: 24),
+
+          verticalSpacing(12),
           //text field input for username
           TextFieldInput(
               textEditingController: _usernameController,
               hintText: 'Enter your name...',
               textInputType: TextInputType.text),
-          const SizedBox(
-            height: 24,
-          ),
+          verticalSpacing(12),
           //Text field for email
           TextFieldInput(
               textEditingController: _emailController,
               hintText: 'Enter your email...',
               textInputType: TextInputType.emailAddress),
-          const SizedBox(
-            height: 24,
-          ),
+              verticalSpacing(12),
           //Text field password
           TextFieldInput(
             textEditingController: _passwordController,
@@ -81,15 +93,12 @@ class _SignupScreenState extends State<SignupScreen> {
             textInputType: TextInputType.text,
             isPass: true,
           ),
-          const SizedBox(height: 24),
-          //text field for bio
+verticalSpacing(12),          //text field for bio
           TextFieldInput(
               textEditingController: _bioController,
               hintText: 'Enter your bio...',
               textInputType: TextInputType.text),
-          const SizedBox(
-            height: 24,
-          ),
+          verticalSpacing(12),
           // Login Button
           InkWell(
             onTap: () async {
@@ -115,9 +124,7 @@ class _SignupScreenState extends State<SignupScreen> {
               child: const Text('Signup'),
             ),
           ),
-          const SizedBox(
-            height: 24,
-          ),
+          verticalSpacing(12),
           Flexible(
             flex: 2,
             child: Container(),
