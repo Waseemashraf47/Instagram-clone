@@ -4,9 +4,10 @@ import 'package:image_picker/image_picker.dart';
 pickImage (ImageSource) async {
   final ImagePicker _imagePicker = ImagePicker();
 
-  XFile? file = await _imagePicker.pickImage(source: source);
+  XFile? _file = await _imagePicker.pickImage(source: ImageSource);
 
-  if (_file = null){
-    return _file.readAsBytes();
+  if (_file != null){
+    return await _file.readAsBytes();
   }
+  print('No image selected');
 }

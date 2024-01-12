@@ -20,6 +20,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _image;
 
   @override
   void dispose() {
@@ -33,9 +34,8 @@ class _SignupScreenState extends State<SignupScreen> {
   Future<void> selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
     setState(() {
-      
+      _image = im;
     });
-
   }
 
   @override
@@ -58,16 +58,21 @@ class _SignupScreenState extends State<SignupScreen> {
           SingleChildScrollView(
             child: Stack(
               children: [
-                const CircleAvatar(
-                  radius: 64,
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
-                ),
+                _image != null
+                    ? CircleAvatar(
+                        radius: 64,
+                        backgroundImage: MemoryImage(_image!),
+                      )
+                    : const CircleAvatar(
+                        radius: 64,
+                        backgroundImage: NetworkImage(
+                            'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'),
+                      ),
                 Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                        onPressed: selectImage, 
+                        onPressed: selectImage,
                         icon: const Icon(Icons.add_a_photo)))
               ],
             ),
@@ -85,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
               textEditingController: _emailController,
               hintText: 'Enter your email...',
               textInputType: TextInputType.emailAddress),
-              verticalSpacing(12),
+          verticalSpacing(12),
           //Text field password
           TextFieldInput(
             textEditingController: _passwordController,
@@ -93,7 +98,7 @@ class _SignupScreenState extends State<SignupScreen> {
             textInputType: TextInputType.text,
             isPass: true,
           ),
-verticalSpacing(12),          //text field for bio
+          verticalSpacing(12), //text field for bio
           TextFieldInput(
               textEditingController: _bioController,
               hintText: 'Enter your bio...',
@@ -107,7 +112,7 @@ verticalSpacing(12),          //text field for bio
                   password: _passwordController.text,
                   username: _usernameController.text,
                   bio: _bioController.text);
-                  print(res);
+              print(res);
             },
             child: Container(
               width: double.infinity,
